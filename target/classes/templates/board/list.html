@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function detailSearch(seq){
+            const link = "/board/detail?seq="+seq;
+            location.href=link;
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <h3>게시글조회</h3>
+    <a href="/">목록으로</a>
+    <a href="/login?page=/board">로그인</a>
+    <a href="/logout">로그아웃</a>
+    <a href="/board/insert">글등록</a>
+    <div th:each="result : ${resultSet}">
+        <li th:text="|분류 ${result.category}|"></li>
+        <li>조회수 [[${result.searchCnt}]]</li>
+        <span th:text="${result.title}"></span> 
+        <button type="button" th:onclick="detailSearch([[${result.seq}]])">상세보기</button>
+        <span>👍</span><span th:text="${result.likeCnt}"></span>
+        <span>👎</span><span th:text="${result.dislikeCnt}"></span>
+        <li th:text="|작성자 : ${result.name}|"></li>
+        <li th:text="|이메일 : ${result.email}|"></li>
+        <hr>
+    </div>
+</body>
+</html>

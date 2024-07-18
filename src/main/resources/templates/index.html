@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <a href="/member">회원관리</a>
+    <a href="/member/register">회원가입</a>
+    <a th:href="@{/member/update(id=${session.id})}">회원수정</a>
+    <a th:href="@{/member/update/detail(id=${session.id})}">회원상세정보수정</a>  
+    <a th:href="@{/member/register/detail(id=${session.id})}">회원정보추가</a>
+    <a href="/board">게시판</a>
+    <a href="/login">로그인</a>
+    <a href="/logout">로그아웃</a>
+    
+    <hr>
+    <block th:if="${session.id} != null">
+      <p th:text="${session.id}"></p>
+      <a th:href="@{/member/mypage}"><button>mypage</button></a>
+      <a th:href="@{/member/myinfo}"><button>myinfo</button></a>
+    </block>
+    <block th:unless="${session.id} != null">
+       <p>로그인전 입니다</p>          
+    </block>
+</body>
+</html>
