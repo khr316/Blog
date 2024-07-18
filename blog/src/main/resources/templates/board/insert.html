@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/board/insert/action" method="post">
+        <input type="hidden" name="id" th:value="${session.id}">
+        분류
+        <select name="category">
+            <block th:each="category : ${resultSet}">
+              <option th:value="${category.codeId}" th:text="${category.codeNm}"></option>
+            </block>
+        </select><br>
+        제목
+        <input name="title"><br>
+        내용
+        <textarea name="content"></textarea><br>
+        <input type="submit" value="등록">
+    </form>
+</body>
+</html>
